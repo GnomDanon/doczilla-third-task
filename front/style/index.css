@@ -1,0 +1,145 @@
+:root {
+    --header-height: 13vh;
+}
+
+/* body */
+
+body {
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    background-color: #ECECEC;
+}
+
+/* end body */
+
+/* header */
+
+.header {
+    background-color: #D1D0D0;
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: #A9A9A9;
+    padding: 8px;
+    width: 184px;
+}
+
+.search-container input[type="text"] {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 18px;
+    width: 100%;
+    color: #A9A9A9;
+}
+
+.search-container input[type="text"]::placeholder {
+    color: #DDDDDD;
+}
+
+.search-container .search-icon {
+    width: 26px;
+    height: 26px;
+    margin-right: 9px;
+    fill: #DDDDDD;
+}
+
+/* end header */
+
+/* main */
+
+.main {
+    height: calc(100vh - var(--header-height));
+    display: flex;
+}
+
+/* left-main */
+
+.left-main {
+    background-color: white;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 20px;
+}
+
+.button {
+    height: 40px;
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: #C4C4C4;
+    border: none;
+    font-size: 18px;
+}
+
+.unfulfilled-checkbox {
+    margin-top: 25px;
+}
+
+/* end left-main */
+
+/* right-main */
+
+.right-main {
+    padding-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.todo-item {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #D2D2D2;
+}
+
+.todo-item-left {
+    height: 100%;
+    max-width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.todo-item-name {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.todo-item-short-desc {
+    margin: 0;
+}
+
+.todo-item-date {
+    margin: 0;
+}
+
+.todo-item-right {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: end;
+}
+
+.todo-item-status {
+    width: 35px;
+    height: 35px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+/* end right-main */
+
+/* end main */

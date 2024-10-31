@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список задач</title>
+    <!-- <link rel="stylesheet" href="./style/normalize.css"> -->
+    <link rel="stylesheet" href="./style/jquery-ui.css">
+    <script src="./script/jquery-3.6.0.min.js"></script>
+    <script src="./script/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="./style/index.css">
+</head>
+<body>
+    <header class="header">
+        <div class="search-container">
+            <img src="./image/Search.svg" alt="Иконка поиска" class="search-icon">
+            <input type="text" placeholder="Поиск" class="search-input">
+        </div>
+        <div class="avatar-icon">
+            <img src="./image/Avatar.svg" alt="Иконка аватара" class="avatar-icon">
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="left-main">
+            <button class="button">Сегодня</button>
+            <button class="button">На неделю</button>
+            <span id="datepicker" class="datepicker"></span>
+            <input type="checkbox" name="unfulfilled" id="unfulfilled-tasks" class="unfulfilled-checkbox">
+            <span>Только невыполненные</span>
+        </div>
+
+        <div class="right-main">
+            <div id="todo-list">
+
+            </div>
+        </div>
+    </main>
+
+    <script src="./script/index.js"></script>
+</body>
+</html>
