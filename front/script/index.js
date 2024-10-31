@@ -63,10 +63,9 @@ class TodoManager {
     renderTodos(checkedTodos) {
         const todoListContainer = $('#todo-list');
         todoListContainer.empty();
-
         checkedTodos.forEach(todo => {
             const todoItem = $(`
-                <div class="todo-item">
+                <div class="todo-item" onclick="openModal('${todo.id}')">
                   <div class="todo-item-left">
                     <h3 class="todo-item-name">${todo.name}</h3>
                     <p class="todo-item-short-desc">${todo.shortDesc}</p>
@@ -75,6 +74,23 @@ class TodoManager {
                     <img class="todo-item-status" src="${todo.status === 'true' ? './image/TodoStatusCompleted.svg' : './image/TodoStatusNotCompleted.svg'}" alt="Статус задания" class="status-icon">
                     <p class="todo-item-date">${this.formatDate(todo.date)}</p>
                   </div>
+                </div>
+                
+                <div id="${todo.id}" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-content-top">
+                            <div class="modal-content-top-left">
+                                <h3 class="modal-name">${todo.name}</h3>
+                                <p class="motal-date">${this.formatDate(todo.date)}</p>
+                            </div>
+                            <img class="modal-status" src="${todo.status === 'true' ? './image/TodoStatusCompleted.svg' : './image/TodoStatusNotCompleted.svg'}" alt="Статус задания" class="status-icon">
+                        </div>
+                        <hr class="modal-horizontal-line" />
+                        <div class="modal-content-bottom">
+                            <div class="modal-description">${todo.fullDesc}</div>
+                            <button class="modal-button" onclick="closeModal('${todo.id}')">Готово</button>
+                        </div>
+                    </div>
                 </div>
                 `);
             todoListContainer.append(todoItem);
@@ -185,3 +201,38 @@ const sortButton = document.querySelector('.sort-button');
 sortButton.addEventListener('click', function() {
     todoManager.sortRenderedTodos();
 })
+
+function openModal(id) {
+    const modal = document.getElementById(id);
+    modal.style.display = "block"
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            closeModal(id)
+        }
+    }
+}
+
+function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+}
+
+$('#search-input').on('input', function() {
+    const q = $(this).val().toLowerCase();
+    const filteredTodos = q.length > 0 ? todoManager.todos.filter(todo => todo.name.toLowerCase().includes(q)) : [];
+
+    $('#dropdown').empty();
+
+    if (filteredTodos.length > 0) {
+        filteredTodos.forEach(todo => {
+            $('#dropdown').append(`
+                <div class="dropdown-item" onclick="openModal('${todo.id}')">
+                    ${todo.name}
+                </div>
+                `)
+        })
+        $('#dropdown').show();
+    } else {
+        $('#dropdown').hide();
+    }
+})
+

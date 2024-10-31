@@ -53,6 +53,46 @@ body {
     fill: #DDDDDD;
 }
 
+.dropdown {
+    position: absolute;
+    top: 69px;
+    left: 15px;
+    width: 100%;
+    border: 1px solid #CCC;
+    background: #fff;
+    max-width: 200px;
+    max-height: 150px;
+    overflow-y: auto;
+    display: none;
+}
+
+.dropdown::-webkit-scrollbar {
+    width: 5px;
+}
+  
+.dropdown::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+  
+.dropdown::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 5px;
+}
+  
+.dropdown::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+.dropdown-item {
+    padding: 8px;
+    cursor: pointer;
+    border-bottom: 1px solid #EEE;
+}
+
+.dropdown-item:hover {
+    background-color: #F0F0F0;
+}
+
 /* end header */
 
 /* main */
@@ -60,6 +100,10 @@ body {
 .main {
     height: calc(100vh - var(--header-height));
     display: flex;
+}
+
+.button {
+    cursor: pointer;
 }
 
 /* left-main */
@@ -148,6 +192,94 @@ body {
     height: 35px;
     margin: 0;
     margin-bottom: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #FFF;
+    margin: 5% auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 80%;
+    width: 350px;
+    height: 400px;
+}
+
+.modal-content-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-name {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+.motal-date {
+    margin: 0;
+}
+
+.modal-status {
+    height: 35px;
+    width: 35px;
+}
+
+.modal-horizontal-line {
+    margin: 10px 0;
+}
+
+.modal-content-bottom {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modal-description {
+    margin: 0;
+    max-height: 300px;
+    padding-right: 10px;
+    overflow-y: auto;
+}
+
+.modal-description::-webkit-scrollbar {
+    width: 5px;
+}
+  
+  .modal-description::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+  
+  .modal-description::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 5px;
+}
+  
+  .modal-description::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+.modal-button {
+    align-self: flex-end;
+    width: 90px;
+    height: 25px;
+    border: none;
+    font-size: 12px;
+    background-color: #E8E8E8;
 }
 
 /* end right-main */
