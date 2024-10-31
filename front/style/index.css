@@ -39,7 +39,7 @@ body {
     outline: none;
     font-size: 18px;
     width: 100%;
-    color: #A9A9A9;
+    color: #DDDDDD;
 }
 
 .search-container input[type="text"]::placeholder {
@@ -92,6 +92,16 @@ body {
     padding-top: 10px;
     padding-left: 25px;
     padding-right: 25px;
+}
+
+.right-main-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.sort-button {
+    cursor: pointer;
 }
 
 .todo-item {

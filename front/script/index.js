@@ -16,6 +16,8 @@ class Todo {
 class TodoManager {
     constructor() {
         this.todos = [];
+        this.displaydTodos = [];
+        this.isNextSortReverse = false;
     }
 
     async fetchTodos(url) {
@@ -77,14 +79,53 @@ class TodoManager {
                 `);
             todoListContainer.append(todoItem);
         })
+
+        const visibleDate = $('#visible-date');
+        visibleDate.empty();
+        
+        const sortedDates = checkedTodos.map(todo => new Date(todo.date)).sort((a, b) => {
+            return a.getTime() - b.getTime();
+        })
+        const minDate = sortedDates[0];
+        const maxDate = sortedDates[sortedDates.length - 1];
+        const months = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+        const minDateString = `${minDate.getDate()} ${months[minDate.getMonth()]} ${minDate.getFullYear()}`;
+        const maxDateString = `${maxDate.getDate()} ${months[maxDate.getMonth()]} ${maxDate.getFullYear()}`;
+
+        visibleDate.append($(`
+            <span class="visible-date-text">
+                ${
+                    minDateString === maxDateString ?
+                    minDateString :
+                    minDateString + ' - ' + maxDateString
+                }
+            </span>
+            `));
     }
 
     renderAllTodos() {
-        this.renderTodos(this.todos);
+        this.displaydTodos = this.todos;
+        this.renderTodos(this.displaydTodos);
     }
 
     renderNotCompletedTodos() {
-        this.renderTodos(this.todos.filter(todo => todo.status === 'false'));
+        this.displaydTodos = this.todos.filter(todo => todo.status === 'false')
+        this.renderTodos(this.displaydTodos);
+    }
+
+    sortRenderedTodos() {
+        if (this.isNextSortReverse) {
+            this.isNextSortReverse = false;
+            this.renderTodos(this.displaydTodos.reverse());
+        } else {
+            this.displaydTodos = this.displaydTodos.sort((a, b) => {
+                const aDate = new Date(a.date)
+                const bDate = new Date(b.date)
+                return aDate.getTime() - bDate.getTime();
+            });
+            this.renderTodos(this.displaydTodos);
+            this.isNextSortReverse = true;
+        }
     }
 
     formatDate(stringDate) {
@@ -138,4 +179,9 @@ checkbox.addEventListener('click', function() {
     } else {
         todoManager.renderAllTodos();
     }
+})
+
+const sortButton = document.querySelector('.sort-button');
+sortButton.addEventListener('click', function() {
+    todoManager.sortRenderedTodos();
 })
