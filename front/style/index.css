@@ -109,10 +109,16 @@ body {
 /* left-main */
 
 .left-main {
+    display: flex;
+    flex-direction: column;
     background-color: white;
     padding-left: 16px;
     padding-right: 16px;
     padding-top: 20px;
+}
+
+.input-date {
+    margin-bottom: 5px;
 }
 
 .button {

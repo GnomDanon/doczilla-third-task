@@ -1,7 +1,3 @@
-$(function() {
-    $("#datepicker").datepicker({});
-});
-
 class Todo {
     constructor(id, name, shortDesc, fullDesc, date, status) {
         this.id = id;
@@ -157,10 +153,29 @@ class TodoManager {
     }
 }
 
-const baseUrl = 'http://localhost:8080/api/todos'
+const baseUrl = 'http://localhost:8083/api/todos'
 
 const todoManager = new TodoManager();
 todoManager.fetchTodos(baseUrl);
+
+$('#datepicker').datepicker({
+    onSelect: function(dateText) {
+        const inputDate = $('#input-date');
+        if (inputDate.val().length === 0 || inputDate.val().split(' - ').length === 2 || inputDate.val() === dateText) {
+            inputDate.val(dateText);
+            const date = new Date(dateText)
+            const nextDate = new Date(date);
+            nextDate.setDate(nextDate.getDate() + 1)
+            todoManager.fetchTodosByDate(baseUrl, date.getTime(), nextDate.getTime())
+        } else {
+            const firstDate = new Date(inputDate.val());
+            const secondDate = new Date(dateText);
+            secondDate.setDate(secondDate.getDate() + 1)
+            inputDate.val(`${inputDate.val()} - ${dateText}`)
+            todoManager.fetchTodosByDate(baseUrl, firstDate.getTime(), secondDate.getTime())
+        }
+    }
+})
 
 const todayButton = document.querySelector('.today-button');
 todayButton.addEventListener('click', function() {
