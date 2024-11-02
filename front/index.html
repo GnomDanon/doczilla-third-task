@@ -26,8 +26,8 @@
 
     <main class="main">
         <div class="left-main">
-            <button class="button today-button">Сегодня</button>
-            <button class="button week-button">На неделю</button>
+            <button class="button today-button" id="today-button">Сегодня</button>
+            <button class="button week-button" id="week-button">На неделю</button>
             <input type="text" id="input-date" class="input-date" disabled>
             <span id="datepicker" class="datepicker"></span>
             <div>
@@ -41,7 +41,7 @@
                 <div class="visible-date" id="visible-date">
 
                 </div>
-                <div class="sort-button">
+                <div class="sort-button" id="sort-button">
                     <img src="./image/SortButton.svg" alt="Иконка сортировки" class="sort-bytton-icon">
                     <span class="sort-button-text">Сортировать по дате</span>
                 </div>
@@ -52,6 +52,17 @@
         </div>
     </main>
 
-    <script src="./script/index.js"></script>
+    <script src="./script/function/ModalFunctions.js"></script>
+    <script src="./script/model/Todo.js" type="module"></script>
+    <script src="./script/service/TodoService.js" type="module"></script>
+    <script src="./script/component/TodoList.js" type="module"></script>
+    <script src="./script/component/Dropdown.js" type="module"></script>
+    <script src="./script/component/Datepicker.js" type="module"></script>
+    <script src="./script/index.js" type="module"></script>
+    
+    
+    
+     
+    
 </body>
 </html>
