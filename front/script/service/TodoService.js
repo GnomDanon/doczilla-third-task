@@ -2,7 +2,8 @@ import { Todo } from "../model/Todo.js";
 
 class TodoService {
     constructor() {
-        this.apiUrl = 'http://localhost:8080/api';
+        const apiUrlMeta = document.querySelector('meta[name="api-url"]');
+        this.apiUrl = apiUrlMeta.content === '__API_URL__' ? 'http://localhost:8080/api' : apiUrlMeta.content;
     }
 
     async fetchTodos() {
